@@ -15,4 +15,8 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Attendance.Infra.Ioc\Attendance.Infra.Ioc.csproj" />
+  </ItemGroup>
+
 </Project>
