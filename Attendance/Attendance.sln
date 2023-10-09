@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Attendance.Domain", "Attend
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Attendance.Infra.Data", "Attendance.Infra.Data\Attendance.Infra.Data.csproj", "{9CB267BA-CFB2-491E-AE4F-26E2BEE942C3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Attendance.Infra.Ioc", "Attendance.Infra.Ioc\Attendance.Infra.Ioc.csproj", "{00A8D2A6-ADFA-4C78-B740-7F52C6C667AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{9CB267BA-CFB2-491E-AE4F-26E2BEE942C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9CB267BA-CFB2-491E-AE4F-26E2BEE942C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9CB267BA-CFB2-491E-AE4F-26E2BEE942C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00A8D2A6-ADFA-4C78-B740-7F52C6C667AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00A8D2A6-ADFA-4C78-B740-7F52C6C667AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00A8D2A6-ADFA-4C78-B740-7F52C6C667AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00A8D2A6-ADFA-4C78-B740-7F52C6C667AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
