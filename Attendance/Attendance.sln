@@ -5,6 +5,8 @@ VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Attendance.Domain", "Attendance.Domain\Attendance.Domain.csproj", "{014FA208-1CCD-47B7-B4A7-82EC31FA3E78}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Attendance.Infra.Data", "Attendance.Infra.Data\Attendance.Infra.Data.csproj", "{9CB267BA-CFB2-491E-AE4F-26E2BEE942C3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{014FA208-1CCD-47B7-B4A7-82EC31FA3E78}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{014FA208-1CCD-47B7-B4A7-82EC31FA3E78}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{014FA208-1CCD-47B7-B4A7-82EC31FA3E78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CB267BA-CFB2-491E-AE4F-26E2BEE942C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CB267BA-CFB2-491E-AE4F-26E2BEE942C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CB267BA-CFB2-491E-AE4F-26E2BEE942C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CB267BA-CFB2-491E-AE4F-26E2BEE942C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
