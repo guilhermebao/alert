@@ -18,6 +18,7 @@ public class Customer : BaseEntity
     public Customer(Guid id, string name, string phoneNumber, string address, string city, string neighborhood, string number)
     {
         ValidateDomain(name, phoneNumber, address, city, neighborhood, number);
+        DomainExceptionValidation.When(id == Guid.Empty, "O Id do cliente não pode ser vazio");
         Id = id;
     }
     public Customer(string name, string phoneNumber, string address, string city, string neighborhood, string number)

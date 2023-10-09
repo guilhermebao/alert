@@ -16,6 +16,7 @@ public class Appointment : BaseEntity
     public Appointment(Guid id, DateTime dateTime, string message, Guid customerId)
     {
         ValidateDomain(dateTime, message, customerId);
+        DomainExceptionValidation.When(id == Guid.Empty, "O Id do agendamento não pode ser vazio");
         Id = id;
     }
 
