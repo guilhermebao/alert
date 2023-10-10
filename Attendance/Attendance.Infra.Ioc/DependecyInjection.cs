@@ -1,4 +1,5 @@
 ﻿using Attendance.Application.Interfaces;
+using Attendance.Application.Mappings;
 using Attendance.Application.Services;
 using Attendance.Domain.Interfaces;
 using Attendance.Infra.Data.Context;
@@ -21,7 +22,7 @@ public static class DependecyInjection
                 b => b.MigrationsAssembly(typeof(AppDbContext).Assembly.FullName));
         });
 
-        services.AddAutoMapper(Assembly.GetExecutingAssembly());
+        services.AddAutoMapper(typeof(DomainToDtoMappingProfile).Assembly);
 
         services.AddScoped<ICustomerRepository, CustomerRepository>();
         services.AddScoped<IAppointmentRepository, AppointmentRepository>();
