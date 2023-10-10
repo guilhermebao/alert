@@ -10,8 +10,7 @@ public class Appointment : BaseEntity
     public string Message { get; private set; }
     public Guid CustomerId { get; private set; }
 
-    // A propriedade de navegação para o Cliente (Customer)
-    public Customer Customer { get; private set; }
+    public Customer Customer { get; set; }
 
     public Appointment(Guid id, DateTime dateTime, string message, Guid customerId)
     {
