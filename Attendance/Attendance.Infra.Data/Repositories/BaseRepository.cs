@@ -7,7 +7,7 @@ namespace Attendance.Infra.Data.Repositories;
 
 public class BaseRepository<TEntity, TKey> : IBaseRepository<TEntity, TKey> where TEntity : class
 {
-    private readonly DbContext _context;
+    private readonly AppDbContext _context;
     private readonly DbSet<TEntity> _dbSet;
 
     public BaseRepository(AppDbContext context)
