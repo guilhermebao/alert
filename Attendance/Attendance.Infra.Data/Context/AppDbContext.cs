@@ -5,7 +5,7 @@ namespace Attendance.Infra.Data.Context;
 
 public class AppDbContext : DbContext
 {
-    protected AppDbContext(DbContextOptions options) : base(options) { }
+    public AppDbContext(DbContextOptions options) : base(options) { }
 
     public DbSet<Customer> Customers { get; set; }
     public DbSet<Appointment> Appointments { get; set; }
