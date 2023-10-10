@@ -29,7 +29,7 @@ public class AppointmentService : IAppointmentService
         return _mapper.Map<AppointmentDto>(appointment);
     }
 
-    public async Task<AppointmentDto> CreateAppointmentAsync(AppointmentDto appointmentDto)
+    public async Task<AppointmentDto> CreateAppointmentAsync(AppointmentCreateDto appointmentDto)
     {
         var appointment = _mapper.Map<Appointment>(appointmentDto);
         appointment.Id = Guid.NewGuid();

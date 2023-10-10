@@ -1,7 +1,12 @@
-﻿using Attendance.Infra.Data.Context;
+﻿using Attendance.Application.Interfaces;
+using Attendance.Application.Services;
+using Attendance.Domain.Interfaces;
+using Attendance.Infra.Data.Context;
+using Attendance.Infra.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 namespace Attendance.Infra.Ioc;
 
@@ -15,6 +20,15 @@ public static class DependecyInjection
             options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"),
                 b => b.MigrationsAssembly(typeof(AppDbContext).Assembly.FullName));
         });
+
+        services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
+        services.AddScoped<ICustomerRepository, CustomerRepository>();
+        services.AddScoped<IAppointmentRepository, AppointmentRepository>();
+        services.AddScoped<ICustomerService, CustomerService>();
+        services.AddScoped<IAppointmentService, AppointmentService>();
+
+
         return services;
     }
 }

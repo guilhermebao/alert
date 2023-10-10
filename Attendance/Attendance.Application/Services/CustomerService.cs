@@ -29,7 +29,7 @@ public class CustomerService : ICustomerService
         return _mapper.Map<CustomerDto>(customer);
     }
 
-    public async Task<CustomerDto> CreateCustomerAsync(CustomerDto customerDto)
+    public async Task<CustomerDto> CreateCustomerAsync(CustomerCreateDto customerDto)
     {
         var customer = _mapper.Map<Customer>(customerDto);
         customer.Id = Guid.NewGuid();
