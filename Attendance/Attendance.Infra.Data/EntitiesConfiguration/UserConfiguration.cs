@@ -1,4 +1,4 @@
-﻿using Attendance.Domain.Entites;
+﻿using Attendance.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -10,6 +10,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
     {
         builder.ToTable("User");
         builder.HasKey(x => x.Id);
+        builder.Property(x => x.Id).ValueGeneratedOnAdd();
         builder.Property(x => x.Name).HasMaxLength(250).IsRequired();
         builder.Property(c => c.Email).HasMaxLength(200).IsRequired();
     }
