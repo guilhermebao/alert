@@ -6,4 +6,13 @@ services:
     ports:
       - "8080:80"
     environment:
-      - ConnectionStrings__DefaultConnection=Host=attendance.cgs8y3246g1p.us-east-1.rds.amazonaws.com;Port=5432;Database=postgres;Username=postgres;Password=oyC6sTa:6+xTG&t(;
+      - ConnectionStrings__DefaultConnection=Host=attendance.cgs8y3246g1p.us-east-1.rds.amazonaws.com;Port=5432;Database=postgres;Username=postgres;Password=oyC6sTa:6+xTG&t(
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - attendance-app
