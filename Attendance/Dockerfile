@@ -1,4 +1,4 @@
-# Use a imagem oficial do .NET SDK como estágio de construção
+# Estágio de construção
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
 
@@ -13,19 +13,18 @@ COPY . .
 WORKDIR "/src/Attendance.Api"
 RUN dotnet build "Attendance.Api.csproj" -c Release -o /app/build
 
-# Use a imagem oficial do ASP.NET como estágio final
+# Estágio final
 FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS final
 WORKDIR /app
 
 # Copie a aplicação construída do estágio de construção
 COPY --from=build /app/build .
 
-
 # Set the environment variables
 ENV ASPNETCORE_URLS http://+:80
 ENV ASPNETCORE_ENVIRONMENT Production
 
-# Exponha a porta
+# Expor a porta para o Nginx
 EXPOSE 80
 
 # Execute a aplicação

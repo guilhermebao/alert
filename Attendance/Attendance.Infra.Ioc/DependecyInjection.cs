@@ -20,11 +20,7 @@ public static class DependencyInjection
         // Configurar o contexto do banco de dados
         services.AddDbContext<AppDbContext>(options =>
         {
-            var connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__DefaultConnection");
-
-            //connectionString ??= "padrao";
-
-            options.UseNpgsql(connectionString,
+            options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"),
                 b => b.MigrationsAssembly(typeof(AppDbContext).Assembly.FullName));
         });
 

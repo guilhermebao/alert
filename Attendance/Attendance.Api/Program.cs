@@ -2,15 +2,11 @@ using Attendance.Infra.Ioc;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-//builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen();
 builder.Services.AddInfrastructureSwagger();
-
 builder.Services.AddInfrastructure(builder.Configuration);
-
 
 var app = builder.Build();
 
@@ -20,16 +16,20 @@ if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 
     app.UseSwaggerUI(c =>
     {
+        c.RoutePrefix = "swagger";
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "attendance-api");
     });
 }
 
+app.UsePathBase("/api");
+app.Use((context, next) =>
+{
+    context.Request.PathBase = "/api";
+    return next();
+});
 
-//app.UseHttpsRedirection();
 app.UseForwardedHeaders();
 
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();
