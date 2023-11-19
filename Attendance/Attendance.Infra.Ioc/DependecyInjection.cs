@@ -42,7 +42,13 @@ public static class DependencyInjection
             using (var scope = serviceProvider.CreateScope())
             {
                 var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-                dbContext.Database.Migrate();
+
+                // Verificar se as migrações são necessárias
+                if (!dbContext.Database.GetAppliedMigrations().Any())
+                {
+                    // Aplicar migrações
+                    dbContext.Database.Migrate();
+                }
             }
         }
 
