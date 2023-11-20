@@ -1,5 +1,6 @@
 ﻿using Attendance.Application.DTOs;
 using Attendance.Application.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Attendance.API.Controllers;
@@ -43,6 +44,7 @@ public class CustomerController : ControllerBase
     }
 
     [HttpPut("{id}")]
+    [Authorize]
     public async Task<IActionResult> UpdateCustomer(Guid id, CustomerDto customerDto)
     {
         var updatedCustomer = await _customerService.UpdateCustomerAsync(id, customerDto);
