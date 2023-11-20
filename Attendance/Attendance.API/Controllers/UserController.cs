@@ -1,6 +1,7 @@
 ﻿using Attendance.Application.DTOs;
 using Attendance.Application.Interfaces;
 using Attendance.Domain.Account;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Attendance.API.Controllers;
