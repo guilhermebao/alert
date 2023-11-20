@@ -34,6 +34,16 @@ public static class DependencyInjectionSwagger
             });
         });
 
+        services.AddCors(options =>
+        {
+            options.AddPolicy("AllowAnyOrigin", builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            });
+        });
+
         return services;
     }
 }

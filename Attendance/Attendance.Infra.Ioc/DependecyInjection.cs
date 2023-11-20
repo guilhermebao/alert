@@ -27,6 +27,16 @@ public static class DependencyInjection
         // Configurar AutoMapper
         services.AddAutoMapper(typeof(DomainToDtoMappingProfile).Assembly);
 
+        services.AddCors(options =>
+        {
+            options.AddPolicy("AllowAnyOrigin", builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            });
+        });
+
         // Registrar repositórios e serviços
         services.AddScoped<ICustomerRepository, CustomerRepository>();
         services.AddScoped<IAppointmentRepository, AppointmentRepository>();
