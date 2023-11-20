@@ -17,7 +17,7 @@ public class AppointmentController : ControllerBase
     }
 
     [HttpGet]
-    [NonAction]
+    [Authorize]
     public async Task<ActionResult<IEnumerable<AppointmentDto>>> GetAppointments()
     {
         var appointments = await _appointmentService.GetAllAppointmentsAsync();
@@ -39,7 +39,7 @@ public class AppointmentController : ControllerBase
     }
 
     [HttpPost]
-    [NonAction]
+    [Authorize]
     public async Task<ActionResult<AppointmentDto>> CreateAppointment(AppointmentCreateDto appointmentDto)
     {
         var createdAppointment = await _appointmentService.CreateAppointmentAsync(appointmentDto);
