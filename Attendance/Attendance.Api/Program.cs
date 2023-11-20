@@ -21,7 +21,6 @@ if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
     });
 }
 
-app.UsePathBase("/api");
 app.UseCors("AllowAnyOrigin");
 
 app.Use((context, next) =>
