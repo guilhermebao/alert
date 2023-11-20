@@ -17,6 +17,7 @@ public class CustomerController : ControllerBase
     }
 
     [HttpGet]
+    [NonAction]
     public async Task<ActionResult<IEnumerable<CustomerDto>>> GetCustomers()
     {
         var customers = await _customerService.GetAllCustomersAsync();
@@ -24,6 +25,7 @@ public class CustomerController : ControllerBase
     }
 
     [HttpGet("{id}")]
+    [NonAction]
     public async Task<ActionResult<CustomerDto>> GetCustomer(Guid id)
     {
         var customer = await _customerService.GetCustomerByIdAsync(id);
@@ -37,6 +39,7 @@ public class CustomerController : ControllerBase
     }
 
     [HttpPost]
+    [NonAction]
     public async Task<ActionResult<CustomerDto>> CreateCustomer(CustomerCreateDto customerDto)
     {
         var createdCustomer = await _customerService.CreateCustomerAsync(customerDto);
@@ -44,7 +47,7 @@ public class CustomerController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    [Authorize]
+    [NonAction]
     public async Task<IActionResult> UpdateCustomer(Guid id, CustomerDto customerDto)
     {
         var updatedCustomer = await _customerService.UpdateCustomerAsync(id, customerDto);
@@ -58,6 +61,7 @@ public class CustomerController : ControllerBase
     }
 
     [HttpDelete("{id}")]
+    [NonAction]
     public async Task<IActionResult> DeleteCustomer(Guid id)
     {
         var result = await _customerService.DeleteCustomerAsync(id);

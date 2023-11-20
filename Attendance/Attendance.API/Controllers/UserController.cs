@@ -19,6 +19,7 @@ public class AuthController : Controller
     }
 
     [HttpPost("register")]
+    [NonAction]
     public async Task<ActionResult<UserToken>> Register(UserCreateDto userDto)
     {
         if (userDto == null)
@@ -43,6 +44,7 @@ public class AuthController : Controller
     }
 
     [HttpPost("login")]
+    [NonAction]
     public async Task<ActionResult<UserToken>> Login(UserLoginDto loginDto)
     {
         if (loginDto == null)

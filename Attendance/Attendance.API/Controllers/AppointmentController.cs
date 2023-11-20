@@ -1,5 +1,6 @@
 ﻿using Attendance.Application.DTOs;
 using Attendance.Application.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Attendance.API.Controllers;
@@ -16,6 +17,7 @@ public class AppointmentController : ControllerBase
     }
 
     [HttpGet]
+    [NonAction]
     public async Task<ActionResult<IEnumerable<AppointmentDto>>> GetAppointments()
     {
         var appointments = await _appointmentService.GetAllAppointmentsAsync();
@@ -23,6 +25,7 @@ public class AppointmentController : ControllerBase
     }
 
     [HttpGet("{id}")]
+    [Authorize]
     public async Task<ActionResult<AppointmentDto>> GetAppointment(Guid id)
     {
         var appointment = await _appointmentService.GetAppointmentByIdAsync(id);
@@ -36,6 +39,7 @@ public class AppointmentController : ControllerBase
     }
 
     [HttpPost]
+    [NonAction]
     public async Task<ActionResult<AppointmentDto>> CreateAppointment(AppointmentCreateDto appointmentDto)
     {
         var createdAppointment = await _appointmentService.CreateAppointmentAsync(appointmentDto);
