@@ -6,6 +6,7 @@ using Attendance.Domain.Interfaces;
 using Attendance.Infra.Data.Context;
 using Attendance.Infra.Data.Identity;
 using Attendance.Infra.Data.Repositories;
+using Attendance.Infra.Integration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -45,6 +46,8 @@ public static class DependencyInjection
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IAuthenticateAsync, AuthenticateService>();
+        services.AddScoped<IAmazonSnsService, AmazonSnsService>();
+        services.AddScoped<IAmazonSns, AmazonSns>();
 
         // Aplicar migrações se as tabelas ainda não existirem
         using (var serviceProvider = services.BuildServiceProvider())

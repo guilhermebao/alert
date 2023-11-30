@@ -17,7 +17,7 @@ public class AppointmentController : ControllerBase
     }
 
     [HttpGet]
-    [Authorize]
+
     public async Task<ActionResult<IEnumerable<AppointmentDto>>> GetAppointments()
     {
         var appointments = await _appointmentService.GetAllAppointmentsAsync();
@@ -25,7 +25,7 @@ public class AppointmentController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    [Authorize]
+
     public async Task<ActionResult<AppointmentDto>> GetAppointment(Guid id)
     {
         var appointment = await _appointmentService.GetAppointmentByIdAsync(id);
@@ -39,10 +39,26 @@ public class AppointmentController : ControllerBase
     }
 
     [HttpPost]
-    [Authorize]
+
     public async Task<ActionResult<AppointmentDto>> CreateAppointment(AppointmentCreateDto appointmentDto)
     {
         var createdAppointment = await _appointmentService.CreateAppointmentAsync(appointmentDto);
         return CreatedAtAction(nameof(GetAppointment), new { id = createdAppointment.Id }, createdAppointment);
+    }
+
+    [HttpPost("SendCustomerMessage")]
+
+    public async Task<ActionResult<bool>> EnviarMensagemCliente([FromBody] SendMessageDto enviarMensagemClienteDto)
+    {
+        if (enviarMensagemClienteDto == null || enviarMensagemClienteDto.CustomerId == Guid.Empty
+            || enviarMensagemClienteDto.AppointmentId == Guid.Empty)
+        {
+            return BadRequest("Parâmetros inválidos para enviar mensagem ao cliente.");
+        }
+
+        var mensagemEnviadaComSucesso = await _appointmentService.SendCustomerMessageAsync(
+            enviarMensagemClienteDto.CustomerId, enviarMensagemClienteDto.AppointmentId);
+
+        return Ok(mensagemEnviadaComSucesso);
     }
 }

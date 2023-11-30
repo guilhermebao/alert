@@ -16,6 +16,7 @@
     <ProjectReference Include="..\Attendance.Application\Attendance.Application.csproj" />
     <ProjectReference Include="..\Attendance.Domain\Attendance.Domain.csproj" />
     <ProjectReference Include="..\Attendance.Infra.Data\Attendance.Infra.Data.csproj" />
+    <ProjectReference Include="..\Attendance.Infra.Integration\Attendance.Infra.Integration.csproj" />
   </ItemGroup>
 
 </Project>

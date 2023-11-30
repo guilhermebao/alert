@@ -9,12 +9,16 @@ namespace Attendance.Application.Services;
 public class AppointmentService : IAppointmentService
 {
     private readonly IAppointmentRepository _appointmentRepository;
+    private readonly ICustomerService _customerService;
+    private readonly IAmazonSnsService _amazonSnsService;
     private readonly IMapper _mapper;
 
-    public AppointmentService(IAppointmentRepository appointmentRepository, IMapper mapper)
+    public AppointmentService(IAppointmentRepository appointmentRepository, IMapper mapper, ICustomerService customerService, IAmazonSnsService amazonSnsService)
     {
         _appointmentRepository = appointmentRepository ?? throw new ArgumentNullException(nameof(appointmentRepository));
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+        _customerService = customerService;
+        _amazonSnsService = amazonSnsService;
     }
 
     public async Task<IEnumerable<AppointmentDto>> GetAllAppointmentsAsync()
@@ -60,5 +64,36 @@ public class AppointmentService : IAppointmentService
 
         await _appointmentRepository.RemoveAsync(id);
         return true;
+    }
+
+    public async Task<bool> SendCustomerMessageAsync(Guid clienteId, Guid agendamentoId)
+    {
+        try
+        {
+            var custumerDto = await _customerService.GetCustomerByIdAsync(clienteId);
+
+            if (custumerDto == null || string.IsNullOrWhiteSpace(custumerDto.PhoneNumber))
+            {
+                Console.WriteLine("Não foi possível carregar as informações do cliente ou o número de telefone está vazio.");
+                return false;
+            }
+
+            var appointmentDto = await GetAppointmentByIdAsync(agendamentoId);
+
+            if (appointmentDto == null || string.IsNullOrWhiteSpace(appointmentDto.Message))
+            {
+                Console.WriteLine("Não foi possível carregar as informações do agendamento ou a mensagem está vazia.");
+                return false;
+            }
+
+            var mensagemEnviadaComSucesso = await _amazonSnsService.SendMessageSMSAsync(custumerDto.PhoneNumber, appointmentDto.Message);
+
+            return mensagemEnviadaComSucesso;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Erro ao enviar mensagem para o cliente: {ex.Message}");
+            return false;
+        }
     }
 }
