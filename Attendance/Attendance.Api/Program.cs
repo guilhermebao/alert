@@ -17,7 +17,7 @@ if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
     app.UseSwaggerUI(c =>
     {
         c.RoutePrefix = "swagger";
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "attendance-api");
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "attendance-api-v1");
     });
 }
 
