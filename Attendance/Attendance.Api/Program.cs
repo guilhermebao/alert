@@ -12,7 +12,7 @@ builder.Services.AddInfrastructure(builder.Configuration);
 
 var app = builder.Build();
 
-app.MapHealthChecks("/health");
+app.MapHealthChecks("/healthcheck");
 
 if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 {

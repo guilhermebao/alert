@@ -21,7 +21,8 @@ public static class DependencyInjection
         // Configurar o contexto do banco de dados
         services.AddDbContext<AppDbContext>(options =>
         {
-            options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"),
+            options.UseMySql(configuration.GetConnectionString("DefaultConnection"),
+                ServerVersion.AutoDetect(configuration.GetConnectionString("DefaultConnection")),
                 b => b.MigrationsAssembly(typeof(AppDbContext).Assembly.FullName));
         });
 

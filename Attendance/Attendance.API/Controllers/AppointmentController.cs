@@ -18,7 +18,7 @@ public class AppointmentController : ControllerBase
 
     [HttpGet]
 
-    public async Task<ActionResult<IEnumerable<AppointmentDto>>> GetAppointments()
+    public async Task<ActionResult<IEnumerable<AppointmentRequest>>> GetAppointments()
     {
         var appointments = await _appointmentService.GetAllAppointmentsAsync();
         return Ok(appointments);

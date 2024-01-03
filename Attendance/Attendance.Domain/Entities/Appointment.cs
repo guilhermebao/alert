@@ -26,7 +26,6 @@ public class Appointment : BaseEntity
 
     public void ValidateDomain(DateTime dateTime, string message, Guid customerId)
     {
-        DomainExceptionValidation.When(dateTime < DateTime.Now, "A data e hora do agendamento não podem estar no passado");
         DomainExceptionValidation.When(string.IsNullOrWhiteSpace(message), "A mensagem do agendamento não pode estar vazia ou em branco");
         DomainExceptionValidation.When(customerId == Guid.Empty, "O Id do cliente no agendamento não pode ser vazio");
 
