@@ -2,6 +2,8 @@ using Attendance.Infra.Ioc;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddHealthChecks();
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -9,6 +11,8 @@ builder.Services.AddInfrastructureSwagger();
 builder.Services.AddInfrastructure(builder.Configuration);
 
 var app = builder.Build();
+
+app.MapHealthChecks("/health");
 
 if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 {
