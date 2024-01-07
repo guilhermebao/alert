@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
+
 namespace Attendance.Infra.Ioc;
 
 public static class DependencyInjection
@@ -21,9 +22,7 @@ public static class DependencyInjection
         // Configurar o contexto do banco de dados
         services.AddDbContext<AppDbContext>(options =>
         {
-            options.UseMySql(configuration.GetConnectionString("DefaultConnection"),
-                ServerVersion.AutoDetect(configuration.GetConnectionString("DefaultConnection")),
-                b => b.MigrationsAssembly(typeof(AppDbContext).Assembly.FullName));
+            options.UseMySQL(configuration.GetConnectionString("DefaultConnection"));
         });
 
         // Configurar AutoMapper
