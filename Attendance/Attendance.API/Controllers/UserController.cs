@@ -4,7 +4,7 @@ using Attendance.Domain.Account;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Attendance.API.Controllers;
+namespace Attendance.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]

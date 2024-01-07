@@ -11,9 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Attendance.Infra.Ioc", "Att
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Attendance.Application", "Attendance.Application\Attendance.Application.csproj", "{42B47210-6032-44FB-B55A-2333A31B50DB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Attendance.API", "Attendance.API\Attendance.API.csproj", "{F04A519F-DA96-4B51-AE12-05397FB0C816}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Attendance.Api", "Attendance.API\Attendance.Api.csproj", "{F04A519F-DA96-4B51-AE12-05397FB0C816}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Attendance.Infra.Integration", "Attendance.Infra.Integration\Attendance.Infra.Integration.csproj", "{B1363E62-4470-478C-B2AD-4B9F897170D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Attendance.Infra.Integration", "Attendance.Infra.Integration\Attendance.Infra.Integration.csproj", "{B1363E62-4470-478C-B2AD-4B9F897170D7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

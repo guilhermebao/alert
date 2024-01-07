@@ -50,22 +50,6 @@ public static class DependencyInjection
         services.AddScoped<IAmazonSnsService, AmazonSnsService>();
         services.AddScoped<IAmazonSns, AmazonSns>();
 
-        // Aplicar migrações se as tabelas ainda não existirem
-        using (var serviceProvider = services.BuildServiceProvider())
-        {
-            using (var scope = serviceProvider.CreateScope())
-            {
-                var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-
-                // Verificar se as migrações são necessárias
-                if (!dbContext.Database.GetAppliedMigrations().Any())
-                {
-                    // Aplicar migrações
-                    dbContext.Database.Migrate();
-                }
-            }
-        }
-
         return services;
     }
 }
