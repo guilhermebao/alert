@@ -22,7 +22,9 @@ public static class DependencyInjection
         // Configurar o contexto do banco de dados
         services.AddDbContext<AppDbContext>(options =>
         {
-            options.UseMySQL(configuration.GetConnectionString("DefaultConnection"));
+            string connectionString = configuration["ConnectionStrings"];
+
+            options.UseMySQL(connectionString);
         });
 
         // Configurar AutoMapper
