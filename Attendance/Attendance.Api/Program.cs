@@ -2,8 +2,18 @@ using Attendance.Infra.Ioc;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddHealthChecks();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("MyCorsPolicy", builder =>
+    {
+        builder.AllowAnyMethod()
+               .AllowAnyHeader()
+               .SetIsOriginAllowed(origin => true)
+               .AllowCredentials();
+    });
+});
 
+builder.Services.AddHealthChecks();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -17,7 +27,6 @@ app.MapHealthChecks("/healthcheck");
 if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 {
     app.UseSwagger();
-
     app.UseSwaggerUI(c =>
     {
         c.RoutePrefix = "swagger";
@@ -26,7 +35,8 @@ if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 }
 
 app.UsePathBase("/api");
-app.UseCors("AllowAnyOrigin");
+
+app.UseCors("MyCorsPolicy");
 
 app.Use((context, next) =>
 {
@@ -35,7 +45,6 @@ app.Use((context, next) =>
 });
 
 app.UseForwardedHeaders();
-
 app.UseAuthorization();
 app.MapControllers();
 app.Run();
